@@ -1,0 +1,22 @@
+{
+  "name": "the-house",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ask-sdk": "^2.0.10",
+    "ask-sdk-core": "^2.0.0",
+    "ask-sdk-model": "^1.0.0",
+    "moment": "^2.22.2",
+    "moment-timezone": "^0.5.21"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "virtual-alexa": "^0.6.6"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "jedburgh",
+      "types": [],
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "BabyLastAteAtIntent",
+          "slots": [
+            {
+              "name": "babyName",
+              "type": "AMAZON.GB_FIRST_NAME"
+            }
+          ],
+          "samples": [
+            "he is eating",
+            "he is feeding",
+            "he is eating now",
+            "he is feeding now",
+            "she is eating",
+            "she is feeding",
+            "she is eating now",
+            "she is feeding now",
+
+            "he's eating",
+            "he's feeding",
+            "he's eating now",
+            "he's feeding now",
+            "she's eating",
+            "she's feeding",
+            "she's eating now",
+            "she's feeding now",
+
+            "{babyName} is eating now",
+            "{babyName} is feeding now",
+            "{babyName} is eating",
+            "{babyName} is feeding",
+            "I am feeding him now",
+            "I am feeding her now",
+            "I am feeding {babyName} now",
+            "I am feeding him",
+            "I am feeding her",
+            "I am feeding {babyName}",
+
+            "I'm feeding him now",
+            "I'm feeding her now",
+            "I'm feeding {babyName} now",
+            "I'm feeding him",
+            "I'm feeding her",
+            "I'm feeding {babyName}"
+          ]
+        },
+        {
+          "name": "WhenBabyLastAteIntent",
+          "slots": [
+            {
+              "name": "babyName",
+              "type": "AMAZON.GB_FIRST_NAME"
+            }
+          ],
+          "samples": [
+            "when did baby last eat",
+            "when did baby eat",
+            "when did the baby eat",
+            "when did he eat",
+            "when did she eat",
+            "when did he last eat",
+            "when did she last eat",
+            "when did {babyName} last eat",
+            "when did {babyName} eat",
+
+            "when did baby last feed",
+            "when did baby feed",
+            "when did the baby feed",
+            "when did he feed",
+            "when did she feed",
+            "when did he last feed",
+            "when did she last feed",
+            "when did {babyName} last feed",
+            "when did {babyName} feed",
+
+            "what time did baby last feed",
+            "what time did baby feed",
+            "what time did the baby feed",
+            "what time did he feed",
+            "what time did she feed",
+            "what time did he last feed",
+            "what time did she last feed",
+            "what time did {babyName} last feed",
+            "what time did {babyName} feed",
+
+            "when {babyName} last ate",
+            "when he last ate",
+            "when she last ate",
+            "when the baby last ate",
+            "when {babyName} last fed",
+            "when he last fed",
+            "when she last fed",
+            "when the baby last fed"
+          ]
+        }
+      ]
+    }
+  }
+}
