@@ -1,25 +1,22 @@
 pipeline {
-    agent any 
+  agent any
 
-    stages {
-        stage('Build') { 
-            steps { 
-                // sh 'make' 
-                echo "********"
-            }
-        }
-        stage('Test'){
-            steps {
-                // sh 'make check'
-                // junit 'reports/**/*.xml' 
-                echo "$$$$$$$%$$$"
-            }
-        }
-        stage('Deploy') {
-            steps {
-                // sh 'make publish'
-                echo "$&&&&&&&&&"
-            }
-        }
+  stages {
+    stage('Start') {
+      steps {
+        checkout scm
+      }
+    }
+
+    stage('npm install') {
+      steps {
+        sh 'npm install '
+      }
+    }
+
+    stage('Test') {
+      steps {
+        sh 'npm test'
+      }
     }
 }
