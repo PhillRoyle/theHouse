@@ -1,40 +1,24 @@
-#!/usr/bin/env groovy
-
 pipeline {
-    agent {
-        node {
-            label 'master'
-            customWorkspace "/local-workspace/${JOB_NAME}/${BUILD_NUMBER}/"
-        }
-    }
-    environment{
-        NODEJS_HOME="${tool 'Node 8 LTS'}"
-        PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
-    }
+    agent any 
+
     stages {
-        stage("Install Dependencies") {
-            steps {
-                sh "npm install"
+        stage('Build') { 
+            steps { 
+                // sh 'make' 
+                echo "********"
             }
         }
-        stage("Build Packages") {
+        stage('Test'){
             steps {
-   				      sh "npm run clean-build"
+                // sh 'make check'
+                // junit 'reports/**/*.xml' 
+                echo "$$$$$$$%$$$"
             }
         }
-        stage("Tests") {
-            parallel {
-                stage("Unit Tests") {
-                    steps {
-                        sh "npm test"
-                    }
-                }
-                stage("Integration Tests") {
-                    steps {
-                        // sh "npm run integration"
-                        echo "finito!"
-                    }
-                }
+        stage('Deploy') {
+            steps {
+                // sh 'make publish'
+                echo "$&&&&&&&&&"
             }
         }
     }
