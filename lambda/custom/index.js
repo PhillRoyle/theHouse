@@ -39,7 +39,6 @@ const BabyLastAteAtIntentHandler = {
     return handlerInput.responseBuilder
       .speak(speechText)
       .withSimpleCard('Baby last ate', speechText)
-      .reprompt("what next?")
       .getResponse();
   },
 };
@@ -61,7 +60,6 @@ const WhenBabyLastAteIntentHandler = {
     return handlerInput.responseBuilder
       .speak(speechText)
       .withSimpleCard('When did baby last eat', speechText)
-      .reprompt("what next?")
       .getResponse();
   },
 };
