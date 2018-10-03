@@ -2,18 +2,20 @@ version: 0.2
 
 phases:
   pre_build:
-    - cd lambda/custom && npm install
+    commands:
+      - cd lambda/custom && npm install
   build:
     commands:
       - npm test 
   post_build:
-    - cd ../../
-    - mkdir myBuild
-    - cp -R lambda myBuild/
-    # - cp -R models myBuild/
-    - zip theHouse.zip myBuild
-    # - tar -zcf theHouse.tar.gz myBuild
-    - rm -rf myBuild
+    commands:
+      - cd ../../
+      - mkdir myBuild
+      - cp -R lambda myBuild/
+      # - cp -R models myBuild/
+      - zip theHouse.zip myBuild
+      # - tar -zcf theHouse.tar.gz myBuild
+      - rm -rf myBuild
 artifacts:
   files:
     - theHouse.zip
