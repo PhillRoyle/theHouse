@@ -64,7 +64,7 @@ it("should say when a specific baby fed if I've already told it", async (done) =
         });
 })
 
-it("should get the hours right, bloomin GMT", async (done) => {
+xit("should get the hours right, bloomin GMT", async (done) => {
     let now = moment(new Date());
     console.log('time now ' + now.format() + " - hours = " + now.hours());
 
