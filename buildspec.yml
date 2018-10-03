@@ -2,8 +2,7 @@ version: 0.2
 
 phases:
   pre_build:
-    - cd lambda/custom
-    - npm install
+    - cd lambda/custom && npm install
   build:
     commands:
       - npm test 
