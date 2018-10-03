@@ -16,6 +16,7 @@ pipeline {
 
     stage('Test') {
       steps {
+        sh 'cd lambda/custom/'
         sh 'npm test'
       }
     }
