@@ -12,8 +12,9 @@ phases:
     - mkdir myBuild
     - cp -R lambda myBuild/
     # - cp -R models myBuild/
-    - tar -zcf theHouse.tar.gz myBuild
+    - zip theHouse.zip myBuild
+    # - tar -zcf theHouse.tar.gz myBuild
     - rm -rf myBuild
 artifacts:
   files:
-    - theHouse.tar.gz
+    - theHouse.zip
