@@ -1,3 +1,6 @@
+# used this with codeBuild - builds, tests, and drops zip into an S3 bucket
+# also added monitoring with cloudwatch for successful builds, then published email with SNS
+
 version: 0.2
 
 phases:
