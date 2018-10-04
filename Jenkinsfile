@@ -23,13 +23,10 @@ pipeline {
 
     stage('Deploy'){
       steps{
-        // sh 'rm -rf myBuild && mkdir myBuild'
-        // sh 'cp -R lambda myBuild/'
-        // sh 'zip theHouse.zip myBuild'
-        // sh 'rm -rf myBuild'
-        sh 'zip theHouse.zip lambda/custom/* '
+        sh 'cd lambda/custom && zip theHouse.zip *'
         sh 'aws s3 cp theHouse.zip s3://my-jenkins-build/'
         sh 'aws lambda update-function-code --region us-east-1 --function-name ask-custom-theHouse-default --zip-file fileb://theHouse.zip'
+        sh 'rm theHouse.zip && cd ../../'
       }
     }
   }
