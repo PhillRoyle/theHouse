@@ -24,7 +24,7 @@ pipeline {
     stage('Deploy'){
       steps{
         sh 'mkdir myBuild && cp -R lambda myBuild/ && zip theHouse.zip myBuild'
-        sh 'aws s3 cp theHouseJenkinsBuild.zip s3://my-jenkins-build/'
+        sh 'aws s3 cp theHouse.zip s3://my-jenkins-build/'
       }
     }
   }
