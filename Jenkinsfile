@@ -20,5 +20,12 @@ pipeline {
         sh 'cd lambda/custom/ && npm test'
       }
     }
+
+    stage('Deploy'){
+      steps{
+        sh 'mkdir myBuild && cp -R lambda myBuild/ && zip theHouse.zip myBuild'
+        sh 'aws s3 cp theHouseJenkinsBuild.zip s3://my-jenkins-build/'
+      }
+    }
   }
 }
