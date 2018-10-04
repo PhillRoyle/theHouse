@@ -73,7 +73,16 @@ xit("should get the hours right, bloomin GMT", async (done) => {
         .then((alexaResponse) => {
             let output = alexaResponse.response.outputSpeech.ssml;
             expect(output).toContain("the baby last fed at");
-            expect(output).toContain(time.getTime(now));//TODO - this won't always work?!?
+            expect(output).toContain(time.getTime(now)); //TODO - this won't always work?!?
+            done();
+        });
+})
+
+it("should get the slot for the bins skill", async (done) => {
+    alexa.utter("which bins should go out today")
+        .then((alexaResponse) => {
+            let output = alexaResponse.response.outputSpeech.ssml;
+            expect(output).toContain("You haven't told me yet.");
             done();
         });
 })

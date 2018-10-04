@@ -2,9 +2,29 @@
   "interactionModel": {
     "languageModel": {
       "invocationName": "jedburgh",
-      "types": [],
-      "intents": [
-        {
+      "types": [{
+        "name": "TimeOfWeek",
+        "values": [{
+            "id": "THIS_WEEK",
+            "name": {
+              "value": "this week",
+              "synonyms": [
+                "today",
+                "on Friday",
+                "tomorrow"
+              ]
+            }
+          },
+          {
+            "id": "NEXT_WEEK",
+            "name": {
+              "value": "next week",
+              "synonyms": ["next Friday"]
+            }
+          }
+        ]
+      }],
+      "intents": [{
           "name": "AMAZON.CancelIntent",
           "samples": []
         },
@@ -18,12 +38,10 @@
         },
         {
           "name": "BabyLastAteAtIntent",
-          "slots": [
-            {
-              "name": "babyName",
-              "type": "AMAZON.GB_FIRST_NAME"
-            }
-          ],
+          "slots": [{
+            "name": "babyName",
+            "type": "AMAZON.GB_FIRST_NAME"
+          }],
           "samples": [
             "he is eating",
             "he is feeding",
@@ -64,12 +82,10 @@
         },
         {
           "name": "WhenBabyLastAteIntent",
-          "slots": [
-            {
-              "name": "babyName",
-              "type": "AMAZON.GB_FIRST_NAME"
-            }
-          ],
+          "slots": [{
+            "name": "babyName",
+            "type": "AMAZON.GB_FIRST_NAME"
+          }],
           "samples": [
             "when did baby last eat",
             "when did baby eat",
@@ -109,6 +125,27 @@
             "when he last fed",
             "when she last fed",
             "when the baby last fed"
+          ]
+        },
+        {
+          "name": "WhichBinsIntent",
+          "slots": [{
+            "name": "timeOfWeek",
+            "type": "TimeOfWeek"
+          }],
+          "samples": [
+            "which bins should go out {timeOfWeek}",
+            "which bins go out {timeOfWeek}",
+            "what bins should go out {timeOfWeek}",
+            "what bins go out {timeOfWeek}",
+            "which bins is it {timeOfWeek}",
+            "what bins is it {timeOfWeek}",
+            "which bin should go out {timeOfWeek}",
+            "which bin goes out {timeOfWeek}",
+            "what bin should go out {timeOfWeek}",
+            "what bin goes out {timeOfWeek}",
+            "which bin is it {timeOfWeek}",
+            "what bin is it {timeOfWeek}"
           ]
         }
       ]

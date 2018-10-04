@@ -64,6 +64,31 @@ const WhenBabyLastAteIntentHandler = {
   },
 };
 
+const WhichBinsIntentHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+      && handlerInput.requestEnvelope.request.intent.name === 'WhichBinsIntent';
+  },
+  async handle(handlerInput) {
+    console.log("========> " );
+    console.log("========> " + JSON.stringify(handlerInput.requestEnvelope.request.intent.slots));
+    const timeOfWeek = handlerInput.requestEnvelope.request.intent.slots.timeOfWeek.Id;
+
+    let speechText = "You haven't told me yet.";
+    // let persistentAttributes = await handlerInput.attributesManager.getPersistentAttributes();
+    // let savedBabyName = persistentAttributes.babyName;
+    // if (savedBabyName) {
+    //   let savedTime = time.getTime(moment.tz(persistentAttributes.fedAtTimestamp, 'Europe/London'));
+    //   speechText = `${savedBabyName} last fed at ${savedTime}`;
+    // }
+
+    return handlerInput.responseBuilder
+      .speak(speechText)
+      .withSimpleCard('When did baby last eat', speechText)
+      .getResponse();
+  },
+};
+
 const HelpIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -126,8 +151,9 @@ const skillBuilder = Alexa.SkillBuilders.standard();
 exports.handler = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
-    WhenBabyLastAteIntentHandler,
     BabyLastAteAtIntentHandler,
+    WhenBabyLastAteIntentHandler,
+    WhichBinsIntentHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler
