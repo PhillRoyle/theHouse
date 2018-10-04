@@ -10,7 +10,8 @@ pipeline {
 
     stage('npm install') {
       steps {
-        sh 'npm install '
+        sh 'cd lambda/custom/ && npm install jest -D'
+        sh 'cd lambda/custom/ && npm install virtual-alexa --save-dev'
       }
     }
 
