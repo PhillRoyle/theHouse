@@ -28,7 +28,7 @@ pipeline {
         sh 'zip theHouse.zip myBuild'
         sh 'rm -rf myBuild'
         sh 'aws s3 cp theHouse.zip s3://my-jenkins-build/'
-        sh 'aws lambda update-function-code --function-name ask-custom-theHouse-default --zip-file theHouse.zip'
+        sh 'aws lambda update-function-code --function-name ask-custom-theHouse-default --zip-file fileb://theHouse.zip'
       }
     }
   }
