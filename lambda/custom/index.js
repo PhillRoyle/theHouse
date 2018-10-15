@@ -94,7 +94,7 @@ const WhichBinsIntentHandler = {
 
     let thisWeekBinsList = binCollections.weekCommencing;
 
-    console.log("========> this week's bins = " + thisWeekBins);
+    console.log("========> this week's bins = " + thisWeekBinsList);
 
     return handlerInput.responseBuilder
       .speak(getTheBinsSpeech(timeOfWeek, thisWeekBinsList))
