@@ -69,7 +69,7 @@ const getTheBinsSpeech = (whichWeek, thisWeekBinsList) => {
   if (thisWeekBinsList) {
     binSpeech = `${whichWeek}, the ${thisWeekBinsList.join(`and`).toString()} will be collected.`
   } else {
-    binSpeech `You haven't told me yet.`;
+    binSpeech = `You haven't told me yet.`;
   }
   return binSpeech;
 }
