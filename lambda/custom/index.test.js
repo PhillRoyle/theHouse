@@ -104,7 +104,7 @@ describe(`about rubbish bin collection`, () => {
         // await handlerInput.attributesManager.savePersistentAttributes();
     })
 
-    it("should get the slot for the bins skill for the correct 'time of week'", async (done) => {
+    xit("should get the slot for the bins skill for the correct 'time of week'", async (done) => {
 
         alexa.utter("which bins should go out next week")
             .then((alexaResponse) => {
