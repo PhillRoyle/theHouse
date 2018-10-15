@@ -22,8 +22,8 @@ const LaunchRequestHandler = {
 
 const BabyLastAteAtIntentHandler = {
   canHandle(handlerInput) {
-    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      && handlerInput.requestEnvelope.request.intent.name === 'BabyLastAteAtIntent';
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest' &&
+      handlerInput.requestEnvelope.request.intent.name === 'BabyLastAteAtIntent';
   },
   async handle(handlerInput) {
     let speechText = "OK, I'll remember that.";
@@ -45,8 +45,8 @@ const BabyLastAteAtIntentHandler = {
 
 const WhenBabyLastAteIntentHandler = {
   canHandle(handlerInput) {
-    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      && handlerInput.requestEnvelope.request.intent.name === 'WhenBabyLastAteIntent';
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest' &&
+      handlerInput.requestEnvelope.request.intent.name === 'WhenBabyLastAteIntent';
   },
   async handle(handlerInput) {
     let speechText = "You haven't told me yet.";
@@ -64,35 +64,49 @@ const WhenBabyLastAteIntentHandler = {
   },
 };
 
+const getTheBinsSpeech = (whichWeek, thisWeekBinsList) => {
+  let binSpeech = null;
+  if (thisWeekBinsList) {
+    binSpeech = `${whichWeek}, the ${thisWeekBinsList.join(`and`).toString()} will be collected.`
+  } else {
+    binSpeech `You haven't told me yet.`;
+  }
+  return binSpeech;
+}
+
 const WhichBinsIntentHandler = {
   canHandle(handlerInput) {
-    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      && handlerInput.requestEnvelope.request.intent.name === 'WhichBinsIntent';
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest' &&
+      handlerInput.requestEnvelope.request.intent.name === 'WhichBinsIntent';
   },
   async handle(handlerInput) {
-    console.log("========> " );
-    console.log("========> " + JSON.stringify(handlerInput.requestEnvelope.request.intent.slots));
-    const timeOfWeek = handlerInput.requestEnvelope.request.intent.slots.timeOfWeek.Id;
+    let timeOfWeek = handlerInput.requestEnvelope.request.intent.slots.timeOfWeek.resolutions.resolutionsPerAuthority[0].values[0].value.id || 'THIS_WEEK';
 
-    let speechText = "You haven't told me yet.";
-    // let persistentAttributes = await handlerInput.attributesManager.getPersistentAttributes();
-    // let savedBabyName = persistentAttributes.babyName;
-    // if (savedBabyName) {
-    //   let savedTime = time.getTime(moment.tz(persistentAttributes.fedAtTimestamp, 'Europe/London'));
-    //   speechText = `${savedBabyName} last fed at ${savedTime}`;
-    // }
+    console.log("========> I'M IN THE WhichBinsIntentHandler ");
+    let persistentAttributes = await handlerInput.attributesManager.getPersistentAttributes();
+    let binCollections = persistentAttributes.binCollections;
+    // let binCollections = JSON.parse(persistentAttributes.binCollections);
+    let weekCommencing = time.whichWeekIsIt(moment(), timeOfWeek);
+
+    //TODO - match week commencing to binCollections - might be better not to have a set of objects in the json....
+    console.log("========> binCollections = " + binCollections);
+    console.log("========> week commencing = " + weekCommencing);
+
+    let thisWeekBinsList = binCollections.weekCommencing;
+
+    console.log("========> this week's bins = " + thisWeekBins);
 
     return handlerInput.responseBuilder
-      .speak(speechText)
-      .withSimpleCard('When did baby last eat', speechText)
+      .speak(getTheBinsSpeech(timeOfWeek, thisWeekBinsList))
+      .withSimpleCard('which bins is it?', speechText)
       .getResponse();
   },
 };
 
 const HelpIntentHandler = {
   canHandle(handlerInput) {
-    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent';
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest' &&
+      handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent';
   },
   handle(handlerInput) {
     const speechText = 'You can say hello to me!';
@@ -107,9 +121,9 @@ const HelpIntentHandler = {
 
 const CancelAndStopIntentHandler = {
   canHandle(handlerInput) {
-    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      && (handlerInput.requestEnvelope.request.intent.name === 'AMAZON.CancelIntent'
-        || handlerInput.requestEnvelope.request.intent.name === 'AMAZON.StopIntent');
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest' &&
+      (handlerInput.requestEnvelope.request.intent.name === 'AMAZON.CancelIntent' ||
+        handlerInput.requestEnvelope.request.intent.name === 'AMAZON.StopIntent');
   },
   handle(handlerInput) {
     const speechText = 'Goodbye!';

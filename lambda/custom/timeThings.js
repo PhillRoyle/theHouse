@@ -67,12 +67,43 @@ const MintuesToWord = {
     55: "five to"
 }
 
+const fetchWeekCommencing = (theMoment) => {
+
+    const binCollectionDay = 5; // i.e. Friday
+    const weekCommencingDay = 1; // i.e. Monday
+    const dow = theMoment.isoWeekday();
+    const formatString = "YYYY-MM-DD";
+    let hour = parseInt(theMoment.format("HH"));
+    
+    // if we haven't yet passed the day of the week that I need:
+    if ((dow < binCollectionDay) || ((dow == binCollectionDay) && (hour < 9))) {
+        // then just give me this week's instance of that day
+        return theMoment.isoWeekday(weekCommencingDay).format(formatString);
+    } else {
+        // otherwise, give me *next week's* instance of that same day
+        return theMoment.add(1, 'weeks').isoWeekday(weekCommencingDay).format(formatString);
+    }
+}
+
+const whichWeek = (myMoment, timeOfWeek) => {
+    myMoment = moment(myMoment);
+    let weekCommencing = null;
+    
+    if (timeOfWeek == `THIS_WEEK`) {
+        weekCommencing = myMoment;
+    } else if (timeOfWeek == `NEXT_WEEK`) {
+        myMoment.add(7, 'days');
+        weekCommencing = myMoment;
+    } else {
+        console.log(`Oh no, we've got a weird time of the week - ${timeOfWeek}`);
+    }
+    return weekCommencing;
+}
+
 module.exports = {
-    getTime: function (moment) {
+    getTime: (moment) => {
         let minutes = moment.minutes();
         let hours = moment.hours();
-        // let minutes = date.getMinutes();
-        // let hours = date.getHours();
         let roundedMinutes = RoundMinutes(minutes);
 
         if (roundedMinutes > 30) {
@@ -91,5 +122,8 @@ module.exports = {
             return roundingStr + hourStr + " o'clock";
         }
         return roundingStr + minutesStr + ' ' + hourStr;
+    },
+    whichWeekIsIt: (myMoment, timeOfWeek) => {
+        return whichWeek(fetchWeekCommencing(myMoment), timeOfWeek);
     }
 }
