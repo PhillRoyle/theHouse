@@ -82,13 +82,15 @@ const WhichBinsIntentHandler = {
   async handle(handlerInput) {
     let timeOfWeek = handlerInput.requestEnvelope.request.intent.slots.timeOfWeek.resolutions.resolutionsPerAuthority[0].values[0].value.id || 'THIS_WEEK';
 
-    console.log("========> I'M IN THE WhichBinsIntentHandler ");
     let weekCommencing = time.whichWeekIsIt(moment(), timeOfWeek);
     console.log("========> week commencing = " + weekCommencing.format());
 
     let persistentAttributes = await handlerInput.attributesManager.getPersistentAttributes();
-    let binCollections = persistentAttributes.binCollections;
-    // let binCollections = JSON.parse(persistentAttributes.binCollections);
+    console.log("========> persistentAttributes = " + persistentAttributes);
+    console.log("========> persistentAttributes = " + JSON.parse(persistentAttributes));
+    console.log("========> persistentAttributes = " + JSON.parse(persistentAttributes).binCollections);
+    // let binCollections = persistentAttributes.binCollections;
+    let binCollections = JSON.stringify(persistentAttributes.binCollections);
 
     //TODO - match week commencing to binCollections - might be better not to have a set of objects in the json....
     console.log("========> binCollections = " + binCollections);

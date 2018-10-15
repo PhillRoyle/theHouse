@@ -97,7 +97,7 @@ describe(`about rubbish bin collection`, () => {
         "2018-12-24": ["Dirty"],
         "2018-12-31": ["Paper", "Garden"]
     }
-    beforeAll(() => {
+    beforeAll(async (handlerInput) => {
         // let persistentAttributes = await handlerInput.attributesManager.getPersistentAttributes();
         // persistentAttributes.binCollections = testBinCollections;
         // handlerInput.attributesManager.setPersistentAttributes(persistentAttributes);
