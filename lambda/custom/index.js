@@ -87,8 +87,8 @@ const WhichBinsIntentHandler = {
     console.log("========> week commencing = " + weekCommencing.format());
 
     let persistentAttributes = await handlerInput.attributesManager.getPersistentAttributes();
-    // let binCollections = persistentAttributes.binCollections;
-    let binCollections = JSON.parse(persistentAttributes.binCollections);
+    let binCollections = persistentAttributes.binCollections;
+    // let binCollections = JSON.parse(persistentAttributes.binCollections);
 
     //TODO - match week commencing to binCollections - might be better not to have a set of objects in the json....
     console.log("========> binCollections = " + binCollections);
