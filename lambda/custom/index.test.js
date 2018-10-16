@@ -97,14 +97,15 @@ describe(`about rubbish bin collection`, () => {
         "2018-12-24": ["Dirty"],
         "2018-12-31": ["Paper", "Garden"]
     }
-    beforeAll(async (handlerInput) => {
-        // let persistentAttributes = await handlerInput.attributesManager.getPersistentAttributes();
-        // persistentAttributes.binCollections = testBinCollections;
-        // handlerInput.attributesManager.setPersistentAttributes(persistentAttributes);
-        // await handlerInput.attributesManager.savePersistentAttributes();
-    })
+    
+    // beforeAll(async (handlerInput) => {
+    //     // let persistentAttributes = await handlerInput.attributesManager.getPersistentAttributes();
+    //     // persistentAttributes.binCollections = testBinCollections;
+    //     // handlerInput.attributesManager.setPersistentAttributes(persistentAttributes);
+    //     // await handlerInput.attributesManager.savePersistentAttributes();
+    // })
 
-    xit("should get the slot for the bins skill for the correct 'time of week'", async (done) => {
+    it.skip("should get the slot for the bins skill for the correct 'time of week'", (done) => {
 
         alexa.utter("which bins should go out next week")
             .then((alexaResponse) => {

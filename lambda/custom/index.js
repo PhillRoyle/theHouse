@@ -37,7 +37,7 @@ const BabyLastAteAtIntentHandler = {
     persistentAttributes.fedAtTimestamp = moment.tz(new Date(), 'Europe/London').format();
 
     handlerInput.attributesManager.setPersistentAttributes(persistentAttributes);
-    await handlerInput.attributesManager.savePersistentAttributes();
+    handlerInput.attributesManager.savePersistentAttributes();
 
     return handlerInput.responseBuilder
       .speak(speechText)
@@ -106,7 +106,7 @@ const WhichBinsIntentHandler = {
       .speak(speechText)
       .withSimpleCard('which bins is it?', speechText)
       .getResponse();
-  },
+  }
 };
 
 const HelpIntentHandler = {
