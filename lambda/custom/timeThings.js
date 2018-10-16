@@ -88,13 +88,10 @@ const fetchWeekCommencing = (theMoment) => {
 const whichWeek = (myMoment, timeOfWeek) => {
     myMoment = moment(myMoment);
     const formatString = "YYYY-MM-DD";
-    let weekCommencing = null;
     
     if (timeOfWeek == `THIS_WEEK`) {
-        weekCommencing = myMoment;
     } else if (timeOfWeek == `NEXT_WEEK`) {
         myMoment.add(7, 'days');
-        weekCommencing = myMoment;
     } else {
         console.log(`Oh no, we've got a weird time of the week - ${timeOfWeek}`);
     }

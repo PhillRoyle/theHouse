@@ -13,7 +13,7 @@ const LaunchRequestHandler = {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   handle(handlerInput) {
-    const speechText = 'Welcome to The FUN House';
+    const speechText = 'Welcome to The House';
 
     return handlerInput.responseBuilder
       .speak(speechText)

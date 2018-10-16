@@ -74,52 +74,52 @@ describe('the speaking clock', () => {
 
 describe('about week commencing', () => {
     test('the beginning of this week', () => {
-        let mondayMoment = moment('2018-10-08')
+        let mondayMoment = moment('2018-10-08').format('YYYY-MM-DD');
         let startOfTheWeek = myTime.whichWeekIsIt(moment('2018-10-11'), `THIS_WEEK`);
-        expect(startOfTheWeek.isSame(mondayMoment)).toBe(true);
+        expect(startOfTheWeek).toBe(mondayMoment);
     });
 
     test('the beginning of this week, when today is monday', () => {
-        let mondayMoment = moment('2018-10-08')
+        let mondayMoment = moment('2018-10-08').format('YYYY-MM-DD');
         let startOfTheWeek = myTime.whichWeekIsIt(moment('2018-10-08'), `THIS_WEEK`);
-        expect(startOfTheWeek.isSame(mondayMoment)).toBe(true);
+        expect(startOfTheWeek).toBe(mondayMoment);
     });
 
     test('the beginning of this week, when today is saturday', () => {
-        let mondayMoment = moment('2018-10-08')
+        let mondayMoment = moment('2018-10-08').format('YYYY-MM-DD');
         let startOfTheWeek = myTime.whichWeekIsIt(moment('2018-10-06'), `THIS_WEEK`);
-        expect(startOfTheWeek.isSame(mondayMoment)).toBe(true);
+        expect(startOfTheWeek).toBe(mondayMoment);
     });
 
     test('the beginning of this week, when today is sunday', () => {
-        let mondayMoment = moment('2018-10-08')
+        let mondayMoment = moment('2018-10-08').format('YYYY-MM-DD');
         let startOfTheWeek = myTime.whichWeekIsIt(moment('2018-10-07'), `THIS_WEEK`);
-        expect(startOfTheWeek.isSame(mondayMoment)).toBe(true);
+        expect(startOfTheWeek).toBe(mondayMoment);
     });
 
     test('the beginning of this week, when today is friday at 8AM', () => {
-        let mondayMoment = moment('2018-10-08')
+        let mondayMoment = moment('2018-10-08').format('YYYY-MM-DD');
         let startOfTheWeek = myTime.whichWeekIsIt(moment("2018-10-12 08:00", "YYYY-MM-DD HH:mm"), `THIS_WEEK`);
 
-        expect(startOfTheWeek.isSame(mondayMoment)).toBe(true);
+        expect(startOfTheWeek).toBe(mondayMoment);
     });
 
     test('the beginning of next week, when today is friday at 9AM', () => {
-        let mondayMoment = moment('2018-10-15')
+        let mondayMoment = moment('2018-10-15').format('YYYY-MM-DD');
         let startOfTheWeek = myTime.whichWeekIsIt(moment("2018-10-12 09:00", "YYYY-MM-DD HH:mm"), `THIS_WEEK`);
-        expect(startOfTheWeek.isSame(mondayMoment)).toBe(true);
+        expect(startOfTheWeek).toBe(mondayMoment);
     });
 
     test('the beginning of next week', () => {
-        let mondayMoment = moment('2018-10-15')
+        let mondayMoment = moment('2018-10-15').format('YYYY-MM-DD');
         let startOfTheWeek = myTime.whichWeekIsIt(moment('2018-10-11'), `NEXT_WEEK`);
-        expect(startOfTheWeek.isSame(mondayMoment)).toBe(true);
+        expect(startOfTheWeek).toBe(mondayMoment);
     });
 
     test('the beginning of next week, when today is friday at 8AM AND ask for next week', () => {
-        let mondayMoment = moment('2018-10-15')
+        let mondayMoment = moment('2018-10-15').format('YYYY-MM-DD');
         let startOfTheWeek = myTime.whichWeekIsIt(moment("2018-10-12 08:00", "YYYY-MM-DD HH:mm"), `NEXT_WEEK`);
 
-        expect(startOfTheWeek.isSame(mondayMoment)).toBe(true);
+        expect(startOfTheWeek).toBe(mondayMoment);
     });
 })
