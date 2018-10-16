@@ -140,12 +140,16 @@
             "what bins go out {timeOfWeek}",
             "which bins is it {timeOfWeek}",
             "what bins is it {timeOfWeek}",
+            "which bins it is {timeOfWeek}",
+            "what bins it is {timeOfWeek}",
             "which bin should go out {timeOfWeek}",
             "which bin goes out {timeOfWeek}",
             "what bin should go out {timeOfWeek}",
             "what bin goes out {timeOfWeek}",
             "which bin is it {timeOfWeek}",
-            "what bin is it {timeOfWeek}"
+            "what bin is it {timeOfWeek}",
+            "which bin it is {timeOfWeek}",
+            "what bin it is {timeOfWeek}"
           ]
         }
       ]

@@ -87,6 +87,7 @@ const fetchWeekCommencing = (theMoment) => {
 
 const whichWeek = (myMoment, timeOfWeek) => {
     myMoment = moment(myMoment);
+    const formatString = "YYYY-MM-DD";
     let weekCommencing = null;
     
     if (timeOfWeek == `THIS_WEEK`) {
@@ -97,7 +98,7 @@ const whichWeek = (myMoment, timeOfWeek) => {
     } else {
         console.log(`Oh no, we've got a weird time of the week - ${timeOfWeek}`);
     }
-    return weekCommencing;
+    return myMoment.format(formatString);
 }
 
 module.exports = {

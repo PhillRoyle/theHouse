@@ -16,6 +16,7 @@
     "moment-timezone": "^0.5.21"
   },
   "devDependencies": {
+    "bespoken-tools": "^2.0.29",
     "jest": "^23.6.0",
     "pack-zip": "^0.2.2",
     "virtual-alexa": "^0.6.6"

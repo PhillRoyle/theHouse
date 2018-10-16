@@ -2,15 +2,18 @@
 /* eslint-disable  no-console */
 
 const Alexa = require('ask-sdk');
+const aws = require("aws-sdk");
 const time = require("./timeThings");
 const moment = require("moment-timezone");
+
+aws.config.region = "us-east-1"; //required for bespoken
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   handle(handlerInput) {
-    const speechText = 'Welcome to The House';
+    const speechText = 'Welcome to The FUN House';
 
     return handlerInput.responseBuilder
       .speak(speechText)
@@ -64,12 +67,20 @@ const WhenBabyLastAteIntentHandler = {
   },
 };
 
-const getTheBinsSpeech = (whichWeek, thisWeekBinsList) => {
-  let binSpeech = null;
-  if (thisWeekBinsList) {
-    binSpeech = `${whichWeek}, the ${thisWeekBinsList.join(`and`).toString()} will be collected.`
-  } else {
-    binSpeech = `You haven't told me yet.`;
+var humanify = (SCREAMING_SNAKE_CASE_STRING) => {
+  return String(SCREAMING_SNAKE_CASE_STRING)
+    .replace("_", " ")
+    .toLowerCase();
+}
+
+var pluralise = (seedWord, collection) => {
+  return seedWord + ((collection.length > 1) ? "s" : "");
+}
+
+const getTheBinsSpeech = (whichWeek, binsList) => {
+  let binSpeech = `You haven't told me yet.`;
+  if (binsList) {
+    binSpeech = `${humanify(whichWeek)}, the ${binsList.join(` and `).toString()} ${pluralise('bin', binsList)} will be collected.`
   }
   return binSpeech;
 }
@@ -83,24 +94,16 @@ const WhichBinsIntentHandler = {
     let timeOfWeek = handlerInput.requestEnvelope.request.intent.slots.timeOfWeek.resolutions.resolutionsPerAuthority[0].values[0].value.id || 'THIS_WEEK';
 
     let weekCommencing = time.whichWeekIsIt(moment(), timeOfWeek);
-    console.log("========> week commencing = " + weekCommencing.format());
 
     let persistentAttributes = await handlerInput.attributesManager.getPersistentAttributes();
-    console.log("========> persistentAttributes = " + persistentAttributes);
-    console.log("========> persistentAttributes = " + JSON.parse(persistentAttributes));
-    console.log("========> persistentAttributes = " + JSON.parse(persistentAttributes).binCollections);
-    // let binCollections = persistentAttributes.binCollections;
-    let binCollections = JSON.stringify(persistentAttributes.binCollections);
+    let binCollections = JSON.parse(persistentAttributes.binCollections);
 
-    //TODO - match week commencing to binCollections - might be better not to have a set of objects in the json....
-    console.log("========> binCollections = " + binCollections);
+    let thisWeekBinsList = binCollections[weekCommencing];
 
-    let thisWeekBinsList = binCollections.weekCommencing;
-
-    console.log("========> this week's bins = " + thisWeekBinsList);
+    let speechText = getTheBinsSpeech(timeOfWeek, thisWeekBinsList);
 
     return handlerInput.responseBuilder
-      .speak(getTheBinsSpeech(timeOfWeek, thisWeekBinsList))
+      .speak(speechText)
       .withSimpleCard('which bins is it?', speechText)
       .getResponse();
   },

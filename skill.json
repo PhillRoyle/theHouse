@@ -22,7 +22,10 @@
       "custom": {
         "endpoint": {
           "sourceDir": "lambda/custom"
-        }
+          // "sslCertificateType": "Wildcard",
+          // "uri": "https://crooked-asimov-0lUAsM.bespoken.link"
+        },
+        "interfaces":[]
       }
     },
     "manifestVersion": "1.0"
