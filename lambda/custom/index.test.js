@@ -81,6 +81,57 @@ describe(`about when the baby last fed`, () => {
 })
 
 describe(`about rubbish bin collection`, () => {
+    const inputBuilder = ({
+        state = defaultState,
+        type = defaultType,
+        intent = defaultIntent,
+        newSession = false,
+        supportedInterfaces = {
+            AudioPlayer: {}
+        }
+    } = {}) => {
+        this.currentState = state || defaultState;
+        return {
+            requestEnvelope: {
+                version: '1.0',
+                session: {
+                    new: newSession,
+                    sessionId: 'amzn1.echo-api.session.c0fa2984-f318-46bf-a5d1-a1720ceda19a',
+                    application: {},
+                    attributes: state,
+                    user: {
+                        userId: '0235ad7c77fb46564cd2a1d0d4b23c81bb63ac8aa1f3b50a9fc0fbf511aacb59'
+                    }
+                },
+                context: {
+                    System: {
+                        device: {
+                            deviceId: 'amzn1.ask.device.AGTAMALUGJOA3PUTWBRNVZIIWJDH66IQWMAOMZAPHLES3SBGQTBC6Q3KS66WNTNVLISTRH6VEDHCIXXSFOXKMRU3P2BPHOL5EAL53N3D7RYMBTZWB6OKEZDP7P3ND3FLBNTOIDVQDISMREAPVTNP5TUTQLUA',
+                            supportedInterfaces
+                        }
+                    }
+                },
+                request: {
+                    type,
+                    requestId: 'amzn1.echo-api.request.aa270596-a198-466a-98ad-8cc95e05774c',
+                    timestamp: '2018-06-20T15:33:31Z',
+                    locale: 'en-GB',
+                    intent
+                }
+            },
+            attributesManager: {
+                setSessionAttributes: newState => {
+                    this.currentState = {
+                        ...this.currentState,
+                        ...newState
+                    };
+                },
+                getSessionAttributes: () => this.currentState
+            },
+            responseBuilder: ResponseFactory.init()
+        };
+    };
+
     const testBinCollections = {
         "2018-10-01": ["Dirty"],
         "2018-10-08": ["Paper", "Garden"],
@@ -97,7 +148,7 @@ describe(`about rubbish bin collection`, () => {
         "2018-12-24": ["Dirty"],
         "2018-12-31": ["Paper", "Garden"]
     }
-    
+
     // beforeAll(async (handlerInput) => {
     //     // let persistentAttributes = await handlerInput.attributesManager.getPersistentAttributes();
     //     // persistentAttributes.binCollections = testBinCollections;
