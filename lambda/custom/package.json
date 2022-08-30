@@ -13,7 +13,7 @@
     "ask-sdk-core": "^2.0.0",
     "ask-sdk-model": "^1.0.0",
     "moment": "^2.22.2",
-    "moment-timezone": "^0.5.21"
+    "moment-timezone": "^0.5.35"
   },
   "devDependencies": {
     "bespoken-tools": "^2.4.15",
