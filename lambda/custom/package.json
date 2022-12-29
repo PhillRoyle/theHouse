@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "bespoken-tools": "^2.4.15",
-    "jest": "^23.6.0",
+    "jest": "^29.3.1",
     "pack-zip": "^0.2.2",
     "virtual-alexa": "^0.6.6"
   }
